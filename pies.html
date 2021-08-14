@@ -56,5 +56,32 @@
             </ul>
         </nav>
     </footer>
+
+    <script>
+        window.addEventListener("DOMContentLoaded", event=>{
+            const orderBtn = document.querySelectorAll("button[data-order]");
+
+            orderBtn.forEach(button =>{
+
+                button.addEventListener("click", event =>{
+                    const button = event.currentTarget;
+                    const container = button.parentNode;
+
+                    const order = {
+                        id:button.getAttribute("data-order"),
+                        title:container.querySelector(".title").innerText,
+                        price:container.querySelector(".price").innerText,
+                        desc: container.querySelector(".desc").innerText
+                    };
+
+                    // store data in local storage
+                    localStorage.setItem("order", JSON.stringify(order));
+
+                    const url = window.location.href.replace("pies.html","order.html");
+                    window.location.href = url;
+                });
+            });
+        })
+    </script>
 </body>
 </html>
